@@ -1,0 +1,152 @@
+@import "vars";
+@import "mixins";
+
+img {
+  vertical-align: top;
+}
+body {
+  background: repeating-linear-gradient(90deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.05) 1px, 0, transparent 50px) #333;
+  font-family: "Poppins", "Noto Sans KR";
+}
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  outline: none;
+}
+.calendarWrap {
+  position: absolute;
+  right: 30px;
+  top: 60px;
+  width: 300px;
+  .inputBox {
+    background-color: #fff;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
+    input {
+      width: 100%;
+      height: 30px;
+      outline: none;
+      border: none;
+      background-color: #f8f8f8;
+    }
+  }
+}
+.calendarBox {
+  display: none;
+  z-index: 3;
+  .inputBox {
+    background: #fff;
+    border-radius: 5px;
+    box-sizing: border-box;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    input {
+      height: 20px;
+      width: 100%;
+      border: none;
+    }
+  }
+  .calendar {
+    padding: 15px;
+    background-color: #fff;
+    box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.2);
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      button {
+        background: none;
+        outline: none;
+        border: none;
+      }
+      .monthBox {
+        .month {
+          font-weight: 700;
+        }
+      }
+    }
+    .days {
+      margin-bottom: 10px;
+      margin-top: 10px;
+    }
+    .days,
+    .dates {
+      ul {
+        display: flex;
+        flex-wrap: wrap;
+        li {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          width: calc(100% / 7 - 4px);
+          margin: 2px;
+          position: relative;
+          cursor: pointer;
+          &.on {
+            span {
+              background-color: #111;
+            }
+          }
+          &.sun {
+            span {
+              background-color: rgb(236, 17, 17);
+            }
+          }
+          &.today {
+            span {
+              background-color: rgb(17, 148, 236);
+              font-weight: 700;
+              @include longShadow(darken(rgb(17, 148, 236), 10), right, 30);
+            }
+          }
+          &.blank {
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+          }
+          &:before {
+            content: "";
+            display: block;
+            padding-top: 100%;
+          }
+          span {
+            position: absolute;
+            overflow: hidden;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #666;
+            transition: 0.25s ease;
+            color: #fff;
+            border-radius: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.chartBox {
+  width: 80%;
+  margin: 100px auto;
+  //background-color: rgba(255, 255, 255, 0.2);
+}
+
+#header {
+  height: 50px;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  @include longShadow(darken(#fff, 10), right, 30);
+  font-weight: 700;
+  font-size: 18px;
+}

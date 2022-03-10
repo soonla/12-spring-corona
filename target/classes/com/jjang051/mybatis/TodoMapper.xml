@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jjang051.mybatis.board">
+	<insert id="insertTodo" parameterType="TodoDto">
+		INSERT INTO TODO VALUES (SEQ_TODO.NEXTVAL,
+										#{todo},
+										#{done},
+										#{pickedDate}
+										)
+	</insert>
+	<select id="getAllList" resultType="TodoDto" parameterType="String">
+		SELECT * FROM TODO WHERE PICKEDDATE = #{pickedDate} ORDER BY NO DESC
+	</select>
+	<delete id="deleteTodo" parameterType="Integer">
+		DELETE FROM TODO WHERE NO = #{no}
+	</delete>
+	<update id="updateTodo" parameterType="TodoDto">
+		UPDATE TODO SET DONE = #{done} WHERE NO = #{no}
+	</update>
+</mapper>
